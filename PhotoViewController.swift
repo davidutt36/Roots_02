@@ -12,6 +12,7 @@
 import UIKit
 import Photos
 
+
 class PhotoViewController: UIViewController {
 
     //foundation variables
@@ -33,10 +34,13 @@ class PhotoViewController: UIViewController {
     }
     
     @IBAction func saveImage(_ sender: UIButton) {
+        self.EndTime()
         let imageData = UIImageJPEGRepresentation(imageView!.image!, 0.8)
         let compressedJPEGImage = UIImage(data: imageData!)
-        UIImageWriteToSavedPhotosAlbum(compressedJPEGImage!, nil, nil, nil)
+            compressedJPEGImage?.accessibilityIdentifier = timerArray[timerArray.count-1]
         
+        UIImageWriteToSavedPhotosAlbum(compressedJPEGImage!, nil, nil, nil)
+        print("\(String(describing: compressedJPEGImage!.accessibilityIdentifier))")
        // CustomPhotoAlbum.sharedInstance.saveImage(compressedJPEGImage)
         
         saveNotice()
@@ -48,7 +52,15 @@ class PhotoViewController: UIViewController {
             self.present(self.PlanterVC, animated: true, completion: nil)
         })
         alertController.addAction(defaultAction)
-        present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion:nil)
+        
+    }
+    
+    func EndTime() {
+        timer?.invalidate()
+        print("You Spent ", count, " seconds taking that picture")
+        timerArray.append(count)
+        print(timerArray)
     }
 
     override func didReceiveMemoryWarning() {

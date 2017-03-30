@@ -9,6 +9,14 @@
 import UIKit
 import AVFoundation
 
+//Timer Variables
+weak var timer: Timer?
+var startTimer: Double = 0
+var time: Double = 0
+var count = ""
+//var timerArray = [String]()
+var timerArray = [String]()
+
 class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
 
     //Camera Variables
@@ -18,12 +26,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
 
     var takePhoto = false
     
-    //Timer Variables
-    weak var timer: Timer?
-    var startTimer: Double = 0
-    var time: Double = 0
-    var count = ""
-    var timerArray = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +134,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         }
     }
     
+
     //Timer Functions
     func StartTime(){
         startTimer = Date().timeIntervalSinceReferenceDate
@@ -149,12 +153,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         print(count)
     }
     
-    func EndTime() {
-        timer?.invalidate()
-        print("You Spent ", count, " seconds taking that picture")
-        timerArray.append(count)
-        print(timerArray)
-    }
+    
     
     
 

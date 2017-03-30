@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+fileprivate var imageWritingContexts = [ImageWritingContext]()
+
+class ImageWritingContext : NSObject
+{
+    var indexPath = IndexPath()
+    // ...
+}
