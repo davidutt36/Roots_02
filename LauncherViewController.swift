@@ -19,9 +19,16 @@ class LauncherViewController: UIViewController {
     @IBAction func launchCamera(_ sender: UIButton) {
         let NavVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "NavVC") as! UINavigationController
         self.present(NavVC, animated: true, completion: {
-        
         })
     }
+    
+    @IBAction func launchGallery(_ sender: UIButton) {
+        let GalVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "GalleryVC") as! UINavigationController
+        self.present(GalVC, animated: true, completion: {
+        })
+    }
+    
+    
         
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
