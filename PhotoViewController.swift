@@ -39,15 +39,19 @@ class PhotoViewController: UIViewController {
         let compressedJPEGImage = UIImage(data: imageData!)
             compressedJPEGImage?.accessibilityIdentifier = timerArray[timerArray.count-1]
         
-        UIImageWriteToSavedPhotosAlbum(compressedJPEGImage!, nil, nil, nil)
-        print("\(String(describing: compressedJPEGImage!.accessibilityIdentifier))")
-       // CustomPhotoAlbum.sharedInstance.saveImage(compressedJPEGImage)
+        
+        //save image to album
+        //UIImageWriteToSavedPhotosAlbum(compressedJPEGImage!, nil, nil, nil)
+        //print("\(String(describing: compressedJPEGImage!.accessibilityIdentifier))")
+       
+        CustomPhotoAlbum.sharedInstance.save(image: compressedJPEGImage!)
+        //CustomPhotoAlbum.saveImage(compressedJPEGImage)
         
         saveNotice()
     }
     
     func saveNotice(){
-        let alertController = UIAlertController(title: "Image Saved!", message: "Image saved to the main photo libaray", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "👏🏻 That's A Keeper 👏🏻", message: "I couldn't of taken a better photo", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: {action in
             self.present(self.PlanterVC, animated: true, completion: nil)
         })

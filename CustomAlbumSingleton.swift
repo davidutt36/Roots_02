@@ -9,6 +9,9 @@
 import Foundation
 import Photos
 
+
+let sharedInstance = CustomPhotoAlbum()
+
 class CustomPhotoAlbum: NSObject {
     static let albumName = "Roots"
     static let sharedInstance = CustomPhotoAlbum()
@@ -53,7 +56,7 @@ class CustomPhotoAlbum: NSObject {
             if success {
                 self.assetCollection = self.fetchAssetCollectionForAlbum()
             } else {
-                print("error \(error)")
+                print("error \(String(describing: error))")
             }
         }
     }

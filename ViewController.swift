@@ -25,6 +25,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     var captureDevice:AVCaptureDevice!
 
     var takePhoto = false
+//  let trigger = UIButton()
     
     
     
@@ -65,6 +66,10 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             //set preview layer to fullscreen
             previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
             
+//            //addbutton NEW
+//            view.addSubview(trigger)
+//            trigger.addTarget(self, action: #selector(takePicture), for: .touchUpInside)
+            
             captureSession.startRunning()
             
             let dataOutput = AVCaptureVideoDataOutput()
@@ -86,6 +91,10 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     @IBAction func takePhoto(_ sender: UIBarButtonItem) {
         takePhoto = true
     }
+    
+//    @IBAction func takePicture(_ sender: UIButton) {
+//        takePhoto = true
+//    }
     
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
@@ -154,7 +163,13 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     }
     
     
-    
+    @IBAction func stopCamera(_ sender: UIBarButtonItem) {
+        let PlanterVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PlanterVC") as! LauncherViewController
+        self.present(PlanterVC, animated: true) { 
+            timer?.invalidate()
+            print("Memory Moment Ended")
+        }
+    }
     
 
     override func didReceiveMemoryWarning() {
