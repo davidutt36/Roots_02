@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UserNotifications
+import UserNotificationsUI
 
 class LauncherViewController: UIViewController {
 
@@ -28,12 +30,42 @@ class LauncherViewController: UIViewController {
         })
     }
     
+    @IBAction func Notify(_ sender: UIButton) {
+        //allow notification access message and confirmation
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler:{
+            didAllow, error in
+        })
+        createNotifications()
+    }
     
+    
+    func createNotifications() {
+       //TEST
+        let content = UNMutableNotificationContent()
+            //display text
+            content.title = "Refining your Roots"
+            content.subtitle = "\(timerArray.count) Taken today"
+            content.body = "What Photos Made Your Day?"
+        
+        //erase or keep the rest
+        
+            //display Icon badge
+            content.badge = 1
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "Timer Done", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func dismissNotifcations(){
+    UIApplication.shared.applicationIconBadgeNumber = 0
+    }
         
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
 
     /*

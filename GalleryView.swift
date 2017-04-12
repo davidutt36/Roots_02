@@ -11,74 +11,109 @@ import Photos
 
 
 class GalleryView: UICollectionViewController,UICollectionViewDelegateFlowLayout {
-
-    var imageArray = [UIImage]()
+    
+    var RootsArrary = [UIImage]()
     
     override func viewDidLoad() {
-        collectPhotos()
+        FetchCustomAlbumPhotos()
+        print("You Have \(RootsArrary.count) Root Photos")
     }
     
-    func collectPhotos(){
-        let imgManager = PHImageManager.default()
-        let requestOptions = PHImageRequestOptions()
-        requestOptions.isSynchronous = true
-        requestOptions.deliveryMode = .highQualityFormat
+    func FetchCustomAlbumPhotos(){
+        var albumName = "Roots"
+        var assetCollection = PHAssetCollection()
+        var albumFound = Bool()
+        var photoAssets = PHFetchResult<AnyObject>()
         
         let fetchOptions = PHFetchOptions()
-//      fetch by date
-        //fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
-        // fetch by album name
-        fetchOptions.predicate = NSPredicate(format: "localIdentifier = %@", "Roots")
+        fetchOptions.predicate = NSPredicate(format: "title = %@", albumName)
+        let collection: PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
         
-        if let fetchResults : PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions){
-            
-            if fetchResults.count > 0{
-                for i in 0..<fetchResults.count{
-                    imgManager.requestImage(for: fetchResults.object(at: i) as! PHAsset, targetSize: CGSize(width:200,height:200), contentMode: .aspectFill, options: requestOptions, resultHandler: {
-                        image, error in
-                        
-                        self.imageArray.append(image!)
-                    })
-                }
-            }
-            else{
-            print("No Photos Available")
-            self.collectionView?.reloadData()
-            }
+        if let first_obj:AnyObject = collection.firstObject{
+            //find album
+            assetCollection = collection.firstObject as! PHAssetCollection
+            albumFound = true
         }
+        else{ albumFound = false}
+        var i = collection.count
+        photoAssets = PHAsset.fetchAssets(in: assetCollection, options: nil) as! PHFetchResult<AnyObject>
+        let imageManager = PHCachingImageManager()
+        
+        photoAssets.enumerateObjects({(object: AnyObject!,
+            count: Int,
+            stop: UnsafeMutablePointer<ObjCBool>) in
+            
+            if object is PHAsset{
+                let asset = object as! PHAsset
+                //print("Inside  If object is image asset, number \(i)")
+                let imageSize = CGSize(width: asset.pixelWidth,height: asset.pixelHeight)
+                
+                let options = PHImageRequestOptions()
+                options.deliveryMode = .highQualityFormat
+                options.isSynchronous = true
+                
+//                imageManager.requestImage(for: asset, targetSize: imageSize, contentMode: .aspectFill, options: options, resultHandler: {
+//                    (image, info) -> Void in
+//                    self.photo = image!
+//                    /* The image is now available to us */
+//                    self.addIma
+//                    //self.addImgToArray(self.photo)
+//                    print("enum for image, This is number 2")
+//                })
+                
+                imageManager.requestImage(for: asset, targetSize: imageSize, contentMode: .aspectFill, options: options, resultHandler:
+                {
+                image, error in
+                self.RootsArrary.append(image!)
+                })
+            }
+        })
     }
+    
+    //Collection View Creation
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageArray.count
+        return RootsArrary.count
     }
     
-    //adding images to cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        
         let imageView = cell.viewWithTag(1) as! UIImageView
-        //create cell for image
-        imageView.image = imageArray[indexPath.row]
+        imageView.image = RootsArrary[indexPath.row]
         return cell
     }
     
-    //flow layout cptions
+    //collection view styling
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let width = collectionView.frame.width/3
-        
-        return CGSize(width:width,height:width)
+        let width = collectionView.frame.width / 3 - 1
+        return CGSize(width: width, height: width)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
     
     @IBAction func dismissGallery(_ sender: UIBarButtonItem) {
          self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-
 }
 
+//Select a spesific Gallery
+//http://stackoverflow.com/questions/32752437/swift-select-all-photos-from-specific-photos-album
+//http://stackoverflow.com/questions/32169185/how-to-fetch-all-images-from-custom-photo-album-swift
+//https://codedump.io/share/Vrl4dB3VThIK/1/swift-select-all-photos-from-specific-photos-album
+//https://www.youtube.com/watch?v=BFZ4ZCw_9z4
 
+
+//making gallery image clickable
+//https://www.youtube.com/watch?v=R8YH_5l7v1k
+
+//notification interactions
+//https://www.youtube.com/watch?v=6RzQ2bptqGM
+//http://www.appcoda.com/ios10-user-notifications-guide/

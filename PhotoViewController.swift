@@ -71,3 +71,7 @@ class PhotoViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 }
+
+//https://www.youtube.com/watch?v=jJRNoLfoVHU
+//https://www.youtube.com/watch?v=Zv4cJf5qdu0
+//https://www.youtube.com/watch?v=yW-6bxk3j2g
