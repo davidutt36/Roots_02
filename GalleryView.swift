@@ -71,11 +71,13 @@ class GalleryView: UICollectionViewController,UICollectionViewDelegateFlowLayout
     }
     
     //Collection View Creation
-    
+    //index path has section paramater and row with each being a layer of the tabelview ->I.S.R
+    //required
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return RootsArrary.count
     }
-    
+
+    //required
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         let imageView = cell.viewWithTag(1) as! UIImageView

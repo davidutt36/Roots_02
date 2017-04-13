@@ -51,7 +51,7 @@ class PhotoViewController: UIViewController {
     }
     
     func saveNotice(){
-        let alertController = UIAlertController(title: "👏🏻 That's A Keeper 👏🏻", message: "I couldn't of taken a better photo", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "👏🏻 That's A Keeper 👏🏻", message: "I couldn't have taken a better photo", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: {action in
             self.present(self.PlanterVC, animated: true, completion: nil)
         })

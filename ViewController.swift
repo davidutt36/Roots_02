@@ -22,10 +22,12 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     //Camera Variables
     let captureSession = AVCaptureSession()
     var previewLayer:CALayer!
+    var captureLayer: CALayer!
+    var buttonLayer: CALayer!
     var captureDevice:AVCaptureDevice!
 
     var takePhoto = false
-//  let trigger = UIButton()
+    //let trigger = UIButton()
     
     
     
@@ -59,12 +61,23 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         }
         
         if let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) {
+            
             self.previewLayer = previewLayer
+            self.previewLayer.frame = self.view.layer.bounds
             self.view.layer.addSublayer(self.previewLayer)
-            self.previewLayer.frame = self.view.layer.frame
             
             //set preview layer to fullscreen
-            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            //previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
+            
+//            previewLayer.frame = captureLayer.bounds
+//            captureLayer.addSublayer(previewLayer)
+            
+            
+            
+//            //NEW CODE!!!!!!!!!!!!!!!!!!!!!!!
+//            let parentLayer = CALayer()
+//            parentLayer.addSublayer(videoLayer)
+//            parentLayer.addSublayer(triggerLayer)
             
 //            //addbutton NEW
 //            view.addSubview(trigger)
@@ -124,10 +137,11 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
             let context = CIContext()
             
+            
             let imageRect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
             
             if let image = context.createCGImage(ciImage, from: imageRect) {
-                return UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .right)
+                return UIImage(cgImage: image, scale: UIScreen.main.nativeScale, orientation: .right)
             }
         }
         return nil
