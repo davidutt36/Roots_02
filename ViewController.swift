@@ -22,8 +22,8 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     //Camera Variables
     let captureSession = AVCaptureSession()
     var previewLayer:CALayer!
-    var captureLayer: CALayer!
-    var buttonLayer: CALayer!
+//    var captureLayer: CALayer!
+//    var buttonLayer: CALayer!
     var captureDevice:AVCaptureDevice!
 
     var takePhoto = false
