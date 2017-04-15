@@ -25,17 +25,29 @@
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gns-mb-1cj">
                                 <rect key="frame" x="131" y="639" width="151" height="66"/>
                                 <color key="backgroundColor" red="0.97483889164609094" green="1" blue="0.97085665204472293" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="151" id="gOI-cM-bHN"/>
+                                </constraints>
                                 <state key="normal" image="scanbutton-1"/>
                                 <connections>
                                     <action selector="takePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D3I-Tq-bcE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUf-Q6-4Q9">
+                                <rect key="frame" x="290" y="659" width="86" height="27"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" image="Rotate">
+                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="gns-mb-1cj" secondAttribute="trailing" constant="112" id="Ayk-Ms-oac"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gns-mb-1cj" secondAttribute="bottom" constant="31" id="NZh-yZ-1DN"/>
-                            <constraint firstItem="gns-mb-1cj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="111" id="yBq-bz-9rg"/>
+                            <constraint firstItem="gns-mb-1cj" firstAttribute="centerY" secondItem="fUf-Q6-4Q9" secondAttribute="centerY" id="4Tg-yr-A9k"/>
+                            <constraint firstItem="gns-mb-1cj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G9t-ch-YfQ"/>
+                            <constraint firstItem="fUf-Q6-4Q9" firstAttribute="leading" secondItem="gns-mb-1cj" secondAttribute="trailing" constant="8" symbolic="YES" id="RFO-CS-pcF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fUf-Q6-4Q9" secondAttribute="bottom" constant="50" id="fXu-of-527"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fUf-Q6-4Q9" secondAttribute="trailing" constant="18" id="tvk-ht-e8f"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="i9i-w3-cVq">
@@ -50,6 +62,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="triggerButton" destination="gns-mb-1cj" id="Z3g-yq-iTh"/>
+                        <outlet property="view" destination="8bC-Xf-vdC" id="vqJ-y9-BHY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -292,6 +308,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Rotate" width="32" height="27"/>
         <image name="scanbutton-1" width="66" height="66"/>
     </resources>
 </document>

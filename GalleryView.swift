@@ -105,17 +105,11 @@ class GalleryView: UICollectionViewController,UICollectionViewDelegateFlowLayout
     }
     
 }
-
-//Select a spesific Gallery
-//http://stackoverflow.com/questions/32752437/swift-select-all-photos-from-specific-photos-album
-//http://stackoverflow.com/questions/32169185/how-to-fetch-all-images-from-custom-photo-album-swift
-//https://codedump.io/share/Vrl4dB3VThIK/1/swift-select-all-photos-from-specific-photos-album
-//https://www.youtube.com/watch?v=BFZ4ZCw_9z4
-
-
-//making gallery image clickable
-//https://www.youtube.com/watch?v=R8YH_5l7v1k
-
-//notification interactions
-//https://www.youtube.com/watch?v=6RzQ2bptqGM
-//http://www.appcoda.com/ios10-user-notifications-guide/
+//References
+    //Select a Specsific Gallery
+        //http://stackoverflow.com/questions/32752437/swift-select-all-photos-from-specific-photos-album
+        //http://stackoverflow.com/questions/32169185/how-to-fetch-all-images-from-custom-photo-album-swift
+        //https://codedump.io/share/Vrl4dB3VThIK/1/swift-select-all-photos-from-specific-photos-album
+        //https://www.youtube.com/watch?v=BFZ4ZCw_9z4
+    //making gallery image clickable
+        //https://www.youtube.com/watch?v=R8YH_5l7v1k

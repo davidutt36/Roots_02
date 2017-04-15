@@ -7,8 +7,6 @@
 //
 
 
-
-
 import UIKit
 import Photos
 
@@ -31,6 +29,7 @@ class PhotoViewController: UIViewController {
     
     @IBAction func backButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+        timer?.invalidate()
     }
     
     @IBAction func saveImage(_ sender: UIButton) {
@@ -72,6 +71,8 @@ class PhotoViewController: UIViewController {
     }
 }
 
-//https://www.youtube.com/watch?v=jJRNoLfoVHU
-//https://www.youtube.com/watch?v=Zv4cJf5qdu0
-//https://www.youtube.com/watch?v=yW-6bxk3j2g
+//References
+    //AVfoundation Camera Fundamentals
+        //https://www.youtube.com/watch?v=jJRNoLfoVHU
+        //https://www.youtube.com/watch?v=Zv4cJf5qdu0
+        //https://www.youtube.com/watch?v=yW-6bxk3j2g

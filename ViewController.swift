@@ -22,15 +22,14 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     //Camera Variables
     let captureSession = AVCaptureSession()
     var previewLayer:CALayer!
-//    var captureLayer: CALayer!
-//    var buttonLayer: CALayer!
+    
+    @IBOutlet weak var triggerButton: UIButton!
+    
+    
     var captureDevice:AVCaptureDevice!
 
     var takePhoto = false
-    //let trigger = UIButton()
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -44,6 +43,8 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     //Camera Functions
     func prepareCamera(){
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
+        
+        
         
         if let availableDevices = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera,.builtInMicrophone], mediaType: AVMediaTypeVideo, position: .back).devices {
             captureDevice = availableDevices.first
@@ -59,10 +60,11 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         }catch {
             print(error.localizedDescription)
         }
-        
         if let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) {
             
             self.previewLayer = previewLayer
+            previewLayer.zPosition = -10
+            
             self.previewLayer.frame = self.view.layer.bounds
             self.view.layer.addSublayer(self.previewLayer)
             
@@ -71,17 +73,6 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             
 //            previewLayer.frame = captureLayer.bounds
 //            captureLayer.addSublayer(previewLayer)
-            
-            
-            
-//            //NEW CODE!!!!!!!!!!!!!!!!!!!!!!!
-//            let parentLayer = CALayer()
-//            parentLayer.addSublayer(videoLayer)
-//            parentLayer.addSublayer(triggerLayer)
-            
-//            //addbutton NEW
-//            view.addSubview(trigger)
-//            trigger.addTarget(self, action: #selector(takePicture), for: .touchUpInside)
             
             captureSession.startRunning()
             
@@ -105,9 +96,9 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         takePhoto = true
     }
     
-//    @IBAction func takePicture(_ sender: UIButton) {
-//        takePhoto = true
-//    }
+    @IBAction func takePicture(_ sender: UIButton) {
+        takePhoto = true
+    }
     
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
@@ -194,3 +185,13 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
 
 }
 
+//https://developer.apple.com/reference/avfoundation/avcapturedevicetype
+
+//static let builtInMicrophone: AVCaptureDeviceType
+//A built-in microphone.
+//static let builtInWideAngleCamera: AVCaptureDeviceType
+//A built-in wide angle camera. These devices are suitable for general purpose use.
+//static let builtInTelephotoCamera: AVCaptureDeviceType
+//A built-in camera device with a longer focal length than a wide-angle camera.
+//static let builtInDualCamera: AVCaptureDeviceType
+//A dual camera device, combining built-in wide-angle and telephoto cameras that work together as a single capture device.

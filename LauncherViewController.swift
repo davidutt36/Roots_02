@@ -47,13 +47,28 @@ class LauncherViewController: UIViewController {
             content.subtitle = "\(timerArray.count) Taken today"
             content.body = "What Photos Made Your Day?"
         
+            //display Icon badge
+            content.badge = 0
+        
         //erase or keep the rest
         
-            //display Icon badge
-            content.badge = 1
+        
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: "Timer Done", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+        
+//        Broken - attempt to conncect to Gallery image path
+//        if let path = Bundle.main.path(forResource: "note", ofType: "JPG"){
+//            let url = URL(fileURLWithPath: path)
+//            
+//            do {
+//                let attachment = try UNNotificationAttachment(identifier: "note", url: url, options: nil)
+//                content.attachments = [attachment]
+//            } catch {
+//                print("The attachment was not loaded.")
+//            }
+//        }
     }
     
     func dismissNotifcations(){
@@ -64,18 +79,11 @@ class LauncherViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+//References
+    //Notifications
+        //http://www.appcoda.com/ios10-user-notifications-guide/
+    //Notification interactions
+        //https://www.youtube.com/watch?v=6RzQ2bptqGM
+        //http://www.appcoda.com/ios10-user-notifications-guide/
