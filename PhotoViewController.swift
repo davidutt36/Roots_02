@@ -44,7 +44,6 @@ class PhotoViewController: UIViewController {
         //print("\(String(describing: compressedJPEGImage!.accessibilityIdentifier))")
        
         CustomPhotoAlbum.sharedInstance.save(image: compressedJPEGImage!)
-        //CustomPhotoAlbum.saveImage(compressedJPEGImage)
         
         saveNotice()
     }

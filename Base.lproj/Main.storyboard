@@ -33,12 +33,15 @@
                                     <action selector="takePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D3I-Tq-bcE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUf-Q6-4Q9">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUf-Q6-4Q9">
                                 <rect key="frame" x="290" y="659" width="86" height="27"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" image="Rotate">
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="switchView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gM2-y1-kVJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

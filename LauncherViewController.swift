@@ -47,6 +47,11 @@ class LauncherViewController: UIViewController {
             content.subtitle = "\(timerArray.count) Taken today"
             content.body = "What Photos Made Your Day?"
         
+        
+            //attachemtns
+//            let attachment = try UNNotificationAttachment(identifier: "RootsArrary.last", url: RootsArrary, options: nil)
+//            content.attachments = [attachment]
+        
             //display Icon badge
             content.badge = 0
         

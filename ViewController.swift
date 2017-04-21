@@ -14,7 +14,6 @@ weak var timer: Timer?
 var startTimer: Double = 0
 var time: Double = 0
 var count = ""
-//var timerArray = [String]()
 var timerArray = [String]()
 
 class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -50,6 +49,13 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             captureDevice = availableDevices.first
             beginSession()
         }
+        
+        
+        
+    }
+   
+    @IBAction func switchView(_ sender: UIButton) {
+    
     }
     
     func beginSession(){
@@ -69,10 +75,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             self.view.layer.addSublayer(self.previewLayer)
             
             //set preview layer to fullscreen
-            //previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
-            
-//            previewLayer.frame = captureLayer.bounds
-//            captureLayer.addSublayer(previewLayer)
+            previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
             
             captureSession.startRunning()
             
@@ -84,6 +87,8 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             if captureSession.canAddOutput(dataOutput) {
                 captureSession.addOutput(dataOutput)
             }
+            
+            
             
             captureSession.commitConfiguration()
             
@@ -186,12 +191,3 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
 }
 
 //https://developer.apple.com/reference/avfoundation/avcapturedevicetype
-
-//static let builtInMicrophone: AVCaptureDeviceType
-//A built-in microphone.
-//static let builtInWideAngleCamera: AVCaptureDeviceType
-//A built-in wide angle camera. These devices are suitable for general purpose use.
-//static let builtInTelephotoCamera: AVCaptureDeviceType
-//A built-in camera device with a longer focal length than a wide-angle camera.
-//static let builtInDualCamera: AVCaptureDeviceType
-//A dual camera device, combining built-in wide-angle and telephoto cameras that work together as a single capture device.

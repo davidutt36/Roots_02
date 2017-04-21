@@ -9,10 +9,11 @@
 import UIKit
 import Photos
 
+var RootsArrary = [UIImage]()
 
 class GalleryView: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
-    var RootsArrary = [UIImage]()
+    
     
     override func viewDidLoad() {
         FetchCustomAlbumPhotos()
@@ -64,7 +65,7 @@ class GalleryView: UICollectionViewController,UICollectionViewDelegateFlowLayout
                 imageManager.requestImage(for: asset, targetSize: imageSize, contentMode: .aspectFill, options: options, resultHandler:
                 {
                 image, error in
-                self.RootsArrary.append(image!)
+                RootsArrary.append(image!)
                 })
             }
         })
