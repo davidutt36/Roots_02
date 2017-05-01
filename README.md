@@ -15,6 +15,6 @@ My second attempt at learning Swift for IOS development. Thesis II - Parsons Sch
 
 #### Screenshots
 
-<img src="/Users/davidutt/Desktop/note.png" height="400px">
+<img src="/Screenshots/note.png" height="400px">
 
-<img src="/Users/davidutt/Desktop/camera.png" height="400px">
+<img src="/Screenshots/camera.png" height="400px">
